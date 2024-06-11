@@ -1,6 +1,6 @@
 NAME= fractol
 CFLAGS= -Wall -Wextra -Werror
-SRCS= main.c error.c mandelbrot.c julia.c utils.c
+SRCS= main.c error.c mandelbrot.c julia.c utils.c hook.c
 OBJS=$(SRCS:.c=.o)
 MINILIBX_DIR := ./minilibx_opengl_20191021
 MINILIBX := $(MINILIBX_DIR)/libmlx.a

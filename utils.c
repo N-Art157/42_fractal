@@ -6,11 +6,10 @@
 /*   By: nakagawashinta <nakagawashinta@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 17:03:57 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/06/01 23:43:32 by nakagawashi      ###   ########.fr       */
+/*   Updated: 2024/06/10 13:22:45 by nakagawashi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx_opengl_20191021/mlx.h"
 #include "fractol.h"
 
 double atof_decimal(char *str, double n)
@@ -52,4 +51,30 @@ double	ft_atof(char *str)
 			break;
 	}
 	return (sign * n);
+}
+
+bool ft_isnum(char *str)
+{
+	bool 	has_digit;
+	bool	has_dot;
+
+	has_digit = false;
+	has_dot = false;
+	if (*str == '+' || *str == '-')
+		str++;
+	while (*str)
+	{
+		if (ft_isdigit(*str))
+			has_digit = true;
+		else if (*str == '.')
+		{
+			if (has_dot == true)
+				return false;
+			has_dot = true;
+		}
+		else
+			return false;
+		str++;
+	}
+	return has_digit;
 }
