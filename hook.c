@@ -6,22 +6,22 @@
 /*   By: nakagawashinta <nakagawashinta@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:18:36 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/06/17 15:34:26 by nakagawashi      ###   ########.fr       */
+/*   Updated: 2024/06/16 14:20:52 by anakagaw      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	compute_c(t_data *data, t_complex clicked, double new_w, double new_h)
+static void	compute_c(t_data *data, t_complex cl, double new_w, double new_h)
 {
 	if (data -> sign == 2)
 	{
 		new_w = (data->fractal.max_re - data->fractal.min_re) * data->ratio;
 		new_h = (data->fractal.max_im - data->fractal.min_im) * data->ratio;
-		data->fractal.min_re = clicked.re - (new_w / 2);
-		data->fractal.max_re = clicked.re + (new_w / 2);
-		data->fractal.min_im = clicked.im - (new_h / 2);
-		data->fractal.max_im = clicked.im + (new_h / 2);
+		data->fractal.min_re = cl.re - (new_w / 2);
+		data->fractal.max_re = cl.re + (new_w / 2);
+		data->fractal.min_im = cl.im - (new_h / 2);
+		data->fractal.max_im = cl.im + (new_h / 2);
 		data->fractal.re_factor *= data->ratio;
 		data->fractal.im_factor *= data->ratio;
 	}
@@ -29,18 +29,18 @@ static void	compute_c(t_data *data, t_complex clicked, double new_w, double new_
 	{
 		new_w = (data->fractal.max_re - data->fractal.min_re) * data->ratio;
 		new_h = (data->fractal.max_im - data->fractal.min_im) * data->ratio;
-		data->fractal.min_re = clicked.re - (new_w / 2);
-		data->fractal.max_re = clicked.re + (new_w / 2);
-		data->fractal.min_im = clicked.im - (new_h / 2);
-		data->fractal.max_im = clicked.im + (new_h / 2);
+		data->fractal.min_re = cl.re - (new_w / 2);
+		data->fractal.max_re = cl.re + (new_w / 2);
+		data->fractal.min_im = cl.im - (new_h / 2);
+		data->fractal.max_im = cl.im + (new_h / 2);
 	}
 }
 
 int	mouse_hook(int button, int x, int y, t_data *data)
 {
 	t_complex	clicked;
-	double	new_width;
-	double	new_height;
+	double		new_width;
+	double		new_height;
 
 	if (data -> sign == 2)
 	{
@@ -67,6 +67,7 @@ int	mouse_hook(int button, int x, int y, t_data *data)
 	return (0);
 }
 
+<<<<<<< HEAD
 static	void	scroll(int key, t_data *data)
 {
 	double	shift_amount_re;
@@ -96,6 +97,8 @@ static	void	scroll(int key, t_data *data)
     }
 }
 
+=======
+>>>>>>> beb82f0254f42c0324e2af01ff27256e4a471512
 int	key_hook(int key, t_data *data)
 {
 	if (key == 53)
