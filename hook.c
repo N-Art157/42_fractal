@@ -6,7 +6,7 @@
 /*   By: nakagawashinta <nakagawashinta@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 17:18:36 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/06/10 14:13:40 by nakagawashi      ###   ########.fr       */
+/*   Updated: 2024/06/17 15:34:26 by nakagawashi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,36 @@ int	mouse_hook(int button, int x, int y, t_data *data)
 	mlx_put_image_to_window(data -> mlx, data -> win, data -> img, 0, 0);
 	return (0);
 }
+
+static	void	scroll(int key, t_data *data)
+{
+	double	shift_amount_re;
+	double	shift_amount_im;
+
+	shift_amount_re = (data->fractal.max_re - data->fractal.min_re) * 0.1;
+    shift_amount_im = (data->fractal.max_im - data->fractal.min_im) * 0.1;
+	if (key == 123) // 左矢印
+    {
+        data->fractal.min_re -= shift_amount_re;
+        data->fractal.max_re -= shift_amount_re;
+    }
+    if (key == 124) // 右矢印
+    {
+        data->fractal.min_re += shift_amount_re;
+        data->fractal.max_re += shift_amount_re;
+    }
+    if (key == 125) // 下矢印
+    {
+        data->fractal.min_im -= shift_amount_im;
+        data->fractal.max_im -= shift_amount_im;
+    }
+    if (key == 126) // 上矢印
+    {
+        data->fractal.min_im += shift_amount_im;
+        data->fractal.max_im += shift_amount_im;
+    }
+}
+
 int	key_hook(int key, t_data *data)
 {
 	if (key == 53)
@@ -73,6 +103,14 @@ int	key_hook(int key, t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 		exit(0);
 	}
+	scroll(key, data);
+	if (data -> sign == 0)
+		draw_mandelbrot(data, 1000, 1000);
+	else if (data -> sign == 1)
+		draw_julia(data, 1000, 1000);
+	else if (data -> sign == 2)
+		draw_sierpinski(data, 1000, 1000);
+	mlx_put_image_to_window(data -> mlx, data -> win, data -> img, 0, 0);
 	return (key);
 }
 
