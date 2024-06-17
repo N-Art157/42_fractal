@@ -67,7 +67,6 @@ int	mouse_hook(int button, int x, int y, t_data *data)
 	return (0);
 }
 
-<<<<<<< HEAD
 static	void	scroll(int key, t_data *data)
 {
 	double	shift_amount_re;
@@ -97,8 +96,6 @@ static	void	scroll(int key, t_data *data)
     }
 }
 
-=======
->>>>>>> beb82f0254f42c0324e2af01ff27256e4a471512
 int	key_hook(int key, t_data *data)
 {
 	if (key == 53)
